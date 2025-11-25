@@ -3,4 +3,7 @@ project(TECHPOG2)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(TECHPOG2 main.cpp)
+add_executable(TECHPOG2 main.cpp
+        Konteiner.h
+        АЕRОFLОТ.cpp
+        АЕRОFLОТ.h)
