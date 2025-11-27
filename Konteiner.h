@@ -22,7 +22,37 @@ public:
     Konteiner& operator=(const Konteiner& other);
 
     T& operator[](int index);
+
     const T& operator[](int index) const;
+
+    void qsortByDestination() {
+        if (size <= 1) return;
+        _quick_sort_destination(0, size - 1);
+    }
+
+    void _quick_sort_destination(int left, int right) {
+        if (left >= right) return;
+
+        const string p = data[left].getDestination(); // опорный элемент - destination
+        int i = left;
+        int j = right;
+
+        while (i < j) {
+            while (data[j].getDestination() > p && i < j) j--;
+            if (i != j) {
+                std::swap(data[i], data[j]);
+                i++;
+            }
+            while (data[i].getDestination() < p && i < j) i++;
+            if (i != j) {
+                std::swap(data[j], data[i]);
+                j--;
+            }
+        }
+
+        if (left < i - 1) _quick_sort_destination(left, i - 1);
+        if (i + 1 < right) _quick_sort_destination(i + 1, right);
+    }
 
     void push_back(const T& value);
     void push_back(T&& value);
