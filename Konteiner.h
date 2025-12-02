@@ -4,6 +4,7 @@
 #include <memory>
 #include <type_traits>
 
+
 template<typename T>
 class Konteiner {
 private:
@@ -33,7 +34,7 @@ public:
     void _quick_sort_destination(int left, int right) {
         if (left >= right) return;
 
-        const string p = data[left].getDestination(); // опорный элемент - destination
+        const std::string p = data[left].getDestination(); // опорный элемент - destination
         int i = left;
         int j = right;
 

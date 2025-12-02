@@ -94,6 +94,7 @@ void Konteiner<T>::push_back(T&& value)
     if (size == capacity)
         reserve(capacity == 0 ? 1 : capacity * 2);
     new (data + size++) T(std::move(value));
+    qsortByDestination();
 }
 
 template<typename T>

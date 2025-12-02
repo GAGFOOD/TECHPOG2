@@ -6,6 +6,7 @@
 
 void printinfo(Konteiner<AEROFLOT> konteiner) {
     for (int i = 0; i < konteiner.getsize(); i++) {
+        cout <<i+1<<endl;
         cout<<konteiner[i]<<endl;
     }
 }
@@ -23,7 +24,7 @@ int countTypeAircraft(Konteiner<AEROFLOT> konteiner, AircraftType aircraft) {
 void printByTypeAircraft(Konteiner<AEROFLOT> konteiner, AircraftType aircraft) {
     if (countTypeAircraft(konteiner, aircraft) >0) {
         for (int i = 0; i < konteiner.getsize(); i++) {
-            cout<<konteiner[i]<<endl;
+            if (konteiner[i].getAircraftType() == aircraft) {cout<<konteiner[i]<<endl;}
         }
     }
     else {
@@ -31,8 +32,137 @@ void printByTypeAircraft(Konteiner<AEROFLOT> konteiner, AircraftType aircraft) {
     }
 }
 
-void fileandstringstream() {
+void WorkWithAircraft(AEROFLOT &aeroflot) {
+    while (true) {
+        cout<<"Edit Aircraft"<<endl;
+        cout<<aeroflot;
+        cout<<"1.Edit destination"<<endl;
+        cout<<"2.Edit flightNumber"<<endl;
+        cout<<"3.Edit aircraftType"<<endl;
+        cout<<"4.Edit exit"<<endl;
+        int choice;
+        cin>>choice;
+        system("cls");
+        switch (choice) {
+            case 1: {
+                cout<<"destination:"<<aeroflot.getDestination()<<endl;
+                cout<<"Enter new destination:";
+                string destination;
+                cin>>destination;
+                aeroflot.setDestination(destination);
+                cout<<"Destination changed"<<endl;
+                system("pause");
+                system("cls");
+                break;
+            }
+            case 2: {
+                cout<<"flightNumber:"<<aeroflot.getFlightNumber()<<endl;
+                cout<<"Enter new flightNumber:";
+                long flightNumber;
+                cin>>flightNumber;
+                aeroflot.setFlightNumber(flightNumber);
+                cout<<"flightNumber changed"<<endl;
+                system("pause");
+                system("cls");
+                break;
+            }
+            case 3: {
+                cout<<"aircraftType:"<<aeroflot.getAircraftType()<<endl;
+                cout<<"Enter new aircraftType:";
+                AircraftType aircraftType;
+                int aiercraft;
+                cin>>aiercraft;
+                aircraftType=static_cast<AircraftType>(aiercraft);
+                aeroflot.setAircraftType(aircraftType);
+                cout<<"Aircraft type changed"<<endl;
+                system("pause");
+                system("cls");
+                break;
+            }
+            case 4: {
+                cout<<"Exit"<<endl;
+                system("cls");
+                system("pause");
+                return;
+            }
+        }
+    }
+}
 
+
+
+void WorkWithAeroFlot() {
+    Konteiner<AEROFLOT> konteiner;
+    AircraftType aircraft;
+    while (true) {
+        cout << "Work with Aeroflot"<<endl;
+        int choice;
+        cout<<"1.Add aircraft"<<endl;
+        cout<<"2.Delete aircraft"<<endl;
+        cout<<"3.Print all aircraft"<<endl;
+        cout<<"4.Print aircraft with type"<<endl;
+        cout<<"5.Edit aircraft"<<endl;
+        cout<<"6.Exit"<<endl;
+        cin>>choice;
+        system("cls");
+        switch (choice) {
+            case 1: {
+                AEROFLOT aeroflot;
+                cin>>aeroflot;
+                konteiner.push_back(aeroflot);
+                cout<<"Aircraft added"<<endl;
+                system("pause");
+                system("cls");
+                break;
+            }
+            case 2: {
+                printinfo(konteiner);
+                int aicraft;
+                cout<<"Enter Aircraft number"<<endl;
+                cin>>aicraft;
+                konteiner.erase(aicraft);
+                cout<<"Aircraft deleted"<<endl;
+                system("pause");
+                system("cls");
+                break;
+            }
+            case 3: {
+                printinfo(konteiner);
+                system("pause");
+                system("cls");
+                break;
+            }
+            case 4: {
+                cout << "Enter aircraft type (0-PassengerJet, 1-PassengerTurboprop, 2-Cargo, 3-BusinessJet, 4-Regional, 5-GeneralAviation, 6-Helicopter, 7-MilitaryFighter, 8-MilitaryTransport, 9-UAV, 10-NONE): ";
+                int aircraft;
+                cin>>aircraft;
+                AircraftType aircraftType;
+                aircraftType=static_cast<AircraftType>(aircraft);
+                printByTypeAircraft(konteiner, aircraftType);
+                system("pause");
+                system("cls");
+                break;
+            }
+            case 5: {
+                printinfo(konteiner);
+                int aicraft;
+                cout<<"Enter Aircraft number"<<endl;
+                cin>>aicraft;
+                system("cls");
+                WorkWithAircraft(konteiner[aicraft-1]);
+                break;
+            }
+            case 6: {
+                cout<<"Exit"<<endl;
+                system("pause");
+                system("cls");
+                return;
+            }
+        }
+    }
+}
+
+void fileandstringstream() {
     ifstream file("1.txt");
     cout << "File open"<<endl;;
     stringstream ss;
@@ -46,19 +176,19 @@ void fileandstringstream() {
     Konteiner<string> sentences;
     string currentSentence;
     for (char c : text) {
+        cout <<c;
+    }
+    for (char c : text) {
         currentSentence += c;
         if (c == '.' || c == '!' || c == '?') {
-            // Удаляем начальные пробелы
             size_t firstNonSpace = currentSentence.find_first_not_of(" \t\n\r");
             if (firstNonSpace != string::npos) {
                 currentSentence = currentSentence.substr(firstNonSpace);
             }
-            // Добавляем предложение в вектор, если оно не пустое
             if (!currentSentence.empty()) {
                 sentences.push_back(currentSentence);
             }
             currentSentence.clear();
-            // Если уже набрали три предложения - выходим
             if (sentences.getsize() >= 3) {
                 break;
             }
@@ -66,7 +196,7 @@ void fileandstringstream() {
     }
     cout << "Sentences divided"<<endl;
     ofstream file2("1.txt");
-    for (int i = sentences.getsize()-1; i>0; i--) {
+    for (int i = sentences.getsize()-1; i>=0; i--) {
         file2<<sentences[i]<<endl;
     }
     cout<<"Sentences write n the reverse order"<<endl;
@@ -74,6 +204,27 @@ void fileandstringstream() {
 
 
 int main() {
-
+    while (true) {
+        cout<<"Aeroflot or  File/string stream\n(1-Aeroflot,2-FSstream,3-exit):";
+        int choice;
+        cin>>choice;
+        system("cls");
+        if (choice == 1) {
+            WorkWithAeroFlot();
+            system("cls");
+        }
+        else if (choice == 2) {
+            fileandstringstream();
+            system("pause");
+            system("cls");
+        }
+        else if (choice == 3) {
+            cout<<"Exit"<<endl;
+            system("pause");
+            system("cls");
+            break;
+        }
+    }
+    system("pause");
     return 0;
 }

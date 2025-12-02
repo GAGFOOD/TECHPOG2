@@ -7,7 +7,7 @@
 #include <iostream>
 using namespace std;
 
-enum class AircraftType {
+enum AircraftType {
     PassengerJet,      // Пассажирский реактивный самолет
     PassengerTurboprop,// Пассажирский турбовинтовой самолет
     Cargo,             // Грузовой самолет
@@ -89,7 +89,8 @@ public:
     friend ostream& operator<<(ostream& os, const AEROFLOT& flight);
     friend istream& operator>>(istream& is, AEROFLOT& flight);
 };
-ostream& operator<<(ostream& os, const AEROFLOT& flight) {
+
+inline ostream& operator<<(ostream& os, const AEROFLOT& flight) {
     os << "Destination: " << flight.destination
     << ", Flight: " << flight.flightNumber
     << ", Aircraft: " << flight.getAircraftTypeString();
@@ -97,14 +98,14 @@ ostream& operator<<(ostream& os, const AEROFLOT& flight) {
 }
 
 // Реализация оператора ввода
-istream& operator>>(istream& is, AEROFLOT& flight) {
-    cout << "Enter destination: ";
+inline istream& operator>>(istream& is, AEROFLOT& flight) {
+    cout << "Enter destination:";
     is >> flight.destination;
 
-    cout << "Enter flight number: ";
+    cout << "Enter flight number:";
     is >> flight.flightNumber;
 
-    cout << "Enter aircraft type (0-PassengerJet, 1-PassengerTurboprop, 2-Cargo, 3-BusinessJet, 4-Regional, 5-GeneralAviation, 6-Helicopter, 7-MilitaryFighter, 8-MilitaryTransport, 9-UAV, 10-NONE): ";
+    cout << "Enter aircraft type \n0-PassengerJet\n1-PassengerTurbopropn\n2-Cargon\n3-BusinessJet/n4-Regional\n5-GeneralAviation\n6-Helicopter\n7-MilitaryFighter\n8-MilitaryTransport\n9-UAV\n10-NONE\n>";
     int type;
     is >> type;
     flight.aircraftType = static_cast<AircraftType>(type);
