@@ -61,6 +61,12 @@ build CMakeFiles/TECHPOG2.dir/АЕRОFLОТ.cpp.obj: CXX_COMPILER__TECHPOG2_unsc
   OBJECT_DIR = CMakeFiles\TECHPOG2.dir
   OBJECT_FILE_DIR = CMakeFiles\TECHPOG2.dir
 
+build CMakeFiles/TECHPOG2.dir/F.cpp.obj: CXX_COMPILER__TECHPOG2_unscanned_Debug C$:/Users/kosti/CLionProjects/TECHPOG2/F.cpp || cmake_object_order_depends_target_TECHPOG2
+  DEP_FILE = CMakeFiles\TECHPOG2.dir\F.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\TECHPOG2.dir
+  OBJECT_FILE_DIR = CMakeFiles\TECHPOG2.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target TECHPOG2
@@ -69,7 +75,7 @@ build CMakeFiles/TECHPOG2.dir/АЕRОFLОТ.cpp.obj: CXX_COMPILER__TECHPOG2_unsc
 #############################################
 # Link the executable TECHPOG2.exe
 
-build TECHPOG2.exe: CXX_EXECUTABLE_LINKER__TECHPOG2_Debug CMakeFiles/TECHPOG2.dir/main.cpp.obj CMakeFiles/TECHPOG2.dir/АЕRОFLОТ.cpp.obj
+build TECHPOG2.exe: CXX_EXECUTABLE_LINKER__TECHPOG2_Debug CMakeFiles/TECHPOG2.dir/main.cpp.obj CMakeFiles/TECHPOG2.dir/АЕRОFLОТ.cpp.obj CMakeFiles/TECHPOG2.dir/F.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\TECHPOG2.dir
