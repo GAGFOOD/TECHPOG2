@@ -108,6 +108,7 @@ void WorkWithAeroFlot() {
                 AEROFLOT aeroflot;
                 cin>>aeroflot;
                 konteiner.push_back(aeroflot);
+                konteiner.qsortByDestination();
                 cout<<"Aircraft added"<<endl;
                 system("pause");
                 system("cls");
